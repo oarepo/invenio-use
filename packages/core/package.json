@@ -1,0 +1,51 @@
+{
+  "name": "@oarepo/invenio-vue-core",
+  "version": "1.0.0",
+  "description": "Collection of Core Invenio APIs Vue composable & stores",
+  "keywords": [
+    "vue",
+    "utils"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oarepo/invenio-vue.git",
+    "directory": "packages/core"
+  },
+  "author": "Miroslav Bauer @ CESNET <https://github.com/CESNET>",
+  "exports": {
+    ".": {
+      "import": "./index.mjs",
+      "require": "./index.cjs",
+      "types": "./index.d.ts"
+    },
+    "./*": "./*",
+    "./nuxt": {
+      "import": "./nuxt.mjs",
+      "require": "./nuxt.cjs",
+      "types": "./nuxt.d.ts"
+    }
+  },
+  "main": "./index.cjs",
+  "types": "./index.d.ts",
+  "module": "./index.mjs",
+  "unpkg": "./index.iife.min.js",
+  "jsdelivr": "./index.iife.min.js",
+  "sideEffects": false,
+  "bugs": {
+    "url": "https://github.com/oarepo/invenio-vue/issues"
+  },
+  "homepage": "https://github.com/vueuse/vueuse#readme",
+  "peerDependencies": {
+    "@vue/composition-api": "^1.1.0",
+    "vue": "^2.6.0 || ^3.2.0"
+  },
+  "peerDependenciesMeta": {
+    "vue": {
+      "optional": true
+    },
+    "@vue/composition-api": {
+      "optional": true
+    }
+  }
+}
