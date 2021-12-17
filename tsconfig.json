@@ -6,20 +6,23 @@
     "moduleResolution": "node",
     "strict": true,
     "jsx": "preserve",
+    "declaration": true,
+    "declarationDir": "./types",
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "incremental": false,
     "skipLibCheck": true,
+    "keyofStringsOnly": false,
     "noUnusedLocals": true,
     "strictNullChecks": true,
+    "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "types": [
       "vite/client",
-      "vite-plugin-pages/client"
     ],
     "paths": {
-      "~/*": ["src/*"]
+      "~/*": ["./src/*"]
     },
     "lib": ["esnext", "dom"]
   },

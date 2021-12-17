@@ -5,12 +5,13 @@
   "license": "MIT",
   "author": "Miroslav Bauer<https://github.com/mirekys>",
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
+    "dev": "nr update && nr docs",
+    "build": "nr update && esno scripts/build.ts",
+    "run:demos": "vite serve",
     "serve": "vite preview",
     "build:redirects": "esno scripts/redirects.ts",
     "build:rollup": "cross-env NODE_OPTIONS=\"--max-old-space-size=6144\" rollup -c",
-    "build:types": "tsc --emitDeclarationOnly && nr types:fix",
+    "build:types": "tsc --emitDeclarationOnly",
     "clean": "rimraf dist types packages/*/dist",
     "docs": "vitepress dev packages",
     "docs:serve": "vitepress serve packages",
@@ -26,17 +27,23 @@
     "test:all": "nr test:3 && nr test:2 && vue-demi-switch 3",
     "test:watch": "jest --watch",
     "typecheck": "tsc --noEmit",
-    "types:fix": "esno scripts/fix-types.ts",
     "update": "esno scripts/update.ts",
     "update:full": "esno scripts/update.ts && nr build:types && nr update:recent",
     "update:recent": "esno scripts/recently-updated.ts"
   },
   "dependencies": {
+    "axios": "^0.24.0",
+    "vue": "^3.2.16",
+    "vuex": "^4.0.2",
+    "vuex-class-component": "^2.3.6",
+    "lodash-es": "^4.17.21"
   },
   "peerDependencies": {
-    "vue": "^3.2.16",
     "axios": "^0.24.0",
-    "vuex": "^4.0.2"
+    "vue": "^3.2.16",
+    "vuex": "^4.0.2",
+    "vuex-class-component": "^2.3.6",
+    "lodash-es": "^4.17.21"
   },
   "devDependencies": {
     "@antfu/ni": "^0.11.1",
@@ -45,12 +52,25 @@
     "@types/js-yaml": "^4.0.4",
     "@types/node": "^16.11.12",
     "@vitejs/plugin-vue": "^1.9.3",
+    "@vueuse/shared": "^7.2.2",
+    "consola": "^2.15.3",
+    "cross-env": "^7.0.3",
+    "esno": "^0.12.1",
+    "fast-glob": "^3.2.7",
+    "fs-extra": "^10.0.0",
+    "gray-matter": "^4.0.3",
     "jest": "^27.2.5",
     "jest-each": "^27.2.5",
     "jest-fetch-mock": "^3.0.3",
+    "prettier": "^2.5.1",
+    "rollup-plugin-dts": "^4.0.1",
+    "rollup-plugin-esbuild": "^4.7.2",
     "typescript": "^4.4.3",
     "vite": "^2.6.4",
-    "vue-tsc": "^0.3.0"
+    "vite-plugin-windicss": "^1.5.1",
+    "vitepress": "^0.20.4",
+    "vue-tsc": "^0.3.0",
+    "@types/lodash-es": "^4.17.5"
   },
   "pnpm": {
     "neverBuiltDependencies": [

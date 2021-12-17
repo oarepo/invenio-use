@@ -1,7 +1,7 @@
 {
   "name": "@oarepo/invenio-vue-core",
-  "version": "1.0.0",
-  "description": "Collection of Core Invenio APIs Vue composable & stores",
+  "version": "0.0.1",
+  "description": "Collection of essential UI Utilities for Invenio",
   "keywords": [
     "vue",
     "utils"
@@ -9,22 +9,17 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/oarepo/invenio-vue.git",
+    "url": "git+https://github.com/vueuse/vueuse.git",
     "directory": "packages/core"
   },
-  "author": "Miroslav Bauer @ CESNET <https://github.com/CESNET>",
+  "author": "Anthony Fu <https://github.com/antfu>",
   "exports": {
     ".": {
       "import": "./index.mjs",
       "require": "./index.cjs",
       "types": "./index.d.ts"
     },
-    "./*": "./*",
-    "./nuxt": {
-      "import": "./nuxt.mjs",
-      "require": "./nuxt.cjs",
-      "types": "./nuxt.d.ts"
-    }
+    "./*": "./*"
   },
   "main": "./index.cjs",
   "types": "./index.d.ts",
@@ -33,7 +28,7 @@
   "jsdelivr": "./index.iife.min.js",
   "sideEffects": false,
   "bugs": {
-    "url": "https://github.com/oarepo/invenio-vue/issues"
+    "url": "https://github.com/vueuse/vueuse/issues"
   },
   "homepage": "https://github.com/vueuse/vueuse#readme",
   "peerDependencies": {
@@ -47,5 +42,6 @@
     "@vue/composition-api": {
       "optional": true
     }
-  }
+  },
+  "dependencies": {}
 }

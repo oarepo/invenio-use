@@ -1,0 +1,57 @@
+{
+  "packages": {
+    "core": {
+      "name": "core",
+      "display": "InvenioUse Core",
+      "description": "Collection of essential UI Utilities for Invenio",
+      "dir": "packages/core"
+    }
+  },
+  "categories": [
+    "Record API",
+    "Search and Filtering APIs"
+  ],
+  "functions": [
+    {
+      "name": "config",
+      "package": "core",
+      "internal": true
+    },
+    {
+      "name": "deposit",
+      "package": "core",
+      "docs": "https://vueuse.org/core/deposit/",
+      "category": "Record API",
+      "description": "reactive acess to Record data"
+    },
+    {
+      "name": "plugin",
+      "package": "core",
+      "internal": true
+    },
+    {
+      "name": "record",
+      "package": "core",
+      "docs": "https://vueuse.org/core/record/",
+      "category": "Record API",
+      "description": "reactive acess to Record data"
+    },
+    {
+      "name": "search",
+      "package": "core",
+      "docs": "https://vueuse.org/core/search/",
+      "category": "Search and Filtering APIs",
+      "description": ""
+    },
+    {
+      "name": "services",
+      "package": "core",
+      "internal": true
+    },
+    {
+      "name": "store",
+      "package": "core",
+      "internal": true
+    }
+  ]
+}
