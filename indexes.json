@@ -20,7 +20,7 @@
     {
       "name": "deposit",
       "package": "core",
-      "docs": "https://vueuse.org/core/deposit/",
+      "docs": "https://invenio-use.org/core/deposit/",
       "category": "Record API",
       "description": "reactive acess to Record data"
     },
@@ -32,24 +32,24 @@
     {
       "name": "record",
       "package": "core",
-      "docs": "https://vueuse.org/core/record/",
+      "docs": "https://invenio-use.org/core/record/",
       "category": "Record API",
       "description": "reactive acess to Record data"
     },
     {
-      "name": "search",
-      "package": "core",
-      "docs": "https://vueuse.org/core/search/",
-      "category": "Search and Filtering APIs",
-      "description": ""
-    },
-    {
-      "name": "services",
+      "name": "routes",
       "package": "core",
       "internal": true
     },
     {
-      "name": "store",
+      "name": "search",
+      "package": "core",
+      "docs": "https://invenio-use.org/core/search/",
+      "category": "Search and Filtering APIs",
+      "description": ""
+    },
+    {
+      "name": "shared",
       "package": "core",
       "internal": true
     }

@@ -1,6 +1,6 @@
 import {createModule} from 'vuex-class-component'
 import {cloneDeep} from 'lodash-es'
-import {RecordState} from "./types";
+import {RecordState} from './types'
 
 export const initialState: RecordState = {
     isLoading: true,

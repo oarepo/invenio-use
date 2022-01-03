@@ -8,8 +8,8 @@ import YAML from 'js-yaml'
 import { packages } from '../meta/packages'
 import { PackageIndexes, VueUseFunction, VueUsePackage } from '../meta/types'
 
-const DOCS_URL = 'https://vueuse.org'
-const GITHUB_BLOB_URL = 'https://github.com/vueuse/vueuse/blob/main/packages'
+const DOCS_URL = 'https://invenio-use.org'
+const GITHUB_BLOB_URL = 'https://github.com/invenio-use/invenio-use/blob/main/packages'
 
 const DIR_ROOT = resolve(__dirname, '..')
 const DIR_SRC = resolve(__dirname, '../packages')
@@ -49,7 +49,7 @@ export function hasDemo(pkg: string, name: string) {
 
 export function getFunctionHead(pkg: string, name: string) {
     let head = packages.find(p => p.name === pkg)!.addon
-        ? `available in add-on [\`@vueuse/${pkg}\`](/${pkg}/README)`
+        ? `available in add-on [\`@invenio-use/${pkg}\`](/${pkg}/README)`
         : ''
 
     if (head)
@@ -331,16 +331,16 @@ export async function updatePackageJSON(indexes: PackageIndexes) {
 
         packageJSON.version = version
         packageJSON.description = description || packageJSON.description
-        packageJSON.author = author || 'Anthony Fu <https://github.com/antfu>'
+        packageJSON.author = author || 'Miroslav Bauer @ CESNET <https://github.com/mirekys>'
         packageJSON.bugs = {
-            url: 'https://github.com/vueuse/vueuse/issues',
+            url: 'https://github.com/oarepo/invenio-use/issues',
         }
         packageJSON.homepage = name === 'core'
-            ? 'https://github.com/vueuse/vueuse#readme'
-            : `https://github.com/vueuse/vueuse/tree/main/packages/${name}#readme`
+            ? 'https://github.com/oarepo/invenio-use#readme'
+            : `https://github.com/oarepo/invenio-use/tree/main/packages/${name}#readme`
         packageJSON.repository = {
             type: 'git',
-            url: 'git+https://github.com/vueuse/vueuse.git',
+            url: 'git+https://github.com/oarepo/invenio-use.git',
             directory: `packages/${name}`,
         }
         packageJSON.main = './index.cjs'

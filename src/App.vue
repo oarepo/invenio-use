@@ -3,7 +3,6 @@ import DemoContainer from './components/DemoContainer.vue'
 </script>
 
 <template lang="pug">
-img(alt="Vue logo" src="./assets/logo.png")
 h1 Core Invenio Store
 pre.code-block {{ $invenio }}
 h1 Current Invenio App Config

@@ -1,4 +1,4 @@
-import {AppConfig, CollectionsConfig} from "./types";
+import {AppConfig, CollectionsConfig} from './types'
 
 export const APP_CONFIG: AppConfig = {
     ENABLE_LOCAL_ACCOUNT_LOGIN: false,

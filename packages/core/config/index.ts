@@ -2,7 +2,7 @@ import _merge from 'lodash-es/merge'
 import {APP_CONFIG, RECORDS_CONFIG} from './default'
 import {AppConfig, IAppConfig, RecordsSearchConfig, RecordsSearchResultConfig} from './types'
 
-class InvenioAppConfig implements IAppConfig {
+export class InvenioAppConfig implements IAppConfig {
     [k: string]: any
 
     private readonly app: AppConfig
@@ -149,3 +149,5 @@ export const getSearchConfig = (modelName: string, extraOptions: RecordsSearchRe
 // export const getStaticPageByName = (name) => {
 //     return _find(invenioConfig.APP.STATIC_PAGES, ['name', name]);
 // };
+
+export default invenioConfig

@@ -19,10 +19,11 @@
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "types": [
+      "jest",
       "vite/client",
     ],
     "paths": {
-      "~/*": ["./src/*"]
+      "~/*": ["./packages/*"]
     },
     "lib": ["esnext", "dom"]
   },

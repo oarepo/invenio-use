@@ -9,10 +9,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vueuse/vueuse.git",
+    "url": "git+https://github.com/oarepo/invenio-use.git",
     "directory": "packages/core"
   },
-  "author": "Anthony Fu <https://github.com/antfu>",
+  "author": "Miroslav Bauer @ CESNET <https://github.com/mirekys>",
   "exports": {
     ".": {
       "import": "./index.mjs",
@@ -28,18 +28,22 @@
   "jsdelivr": "./index.iife.min.js",
   "sideEffects": false,
   "bugs": {
-    "url": "https://github.com/vueuse/vueuse/issues"
+    "url": "https://github.com/oarepo/invenio-use/issues"
   },
-  "homepage": "https://github.com/vueuse/vueuse#readme",
+  "homepage": "https://github.com/oarepo/invenio-use#readme",
   "peerDependencies": {
     "@vue/composition-api": "^1.1.0",
-    "vue": "^2.6.0 || ^3.2.0"
+    "vue": "^2.6.0 || ^3.2.0",
+    "vue-router": "^4.0.12"
   },
   "peerDependenciesMeta": {
     "vue": {
       "optional": true
     },
     "@vue/composition-api": {
+      "optional": true
+    },
+    "vue-router": {
       "optional": true
     }
   },

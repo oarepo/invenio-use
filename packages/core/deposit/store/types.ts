@@ -34,7 +34,7 @@ export type RecordFileState = {
 
 export interface RecordFiles<RecordFileEntry> {
     // File that should be previewed by default
-    default_preview: string & null,
+    default_preview: string | undefined,
     // Object containing links for management of record's files
     links: Links
 }

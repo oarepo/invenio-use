@@ -1,39 +1,54 @@
 import {App} from 'vue'
 import {createStore} from 'vuex'
 import {createProxy, extractVuexModule} from 'vuex-class-component'
-import {CoreStore} from '../store'
-import {InvenioConfig} from './types'
-import {invenioConfig} from "../config";
+import {CoreStore} from '../shared/store'
+import {InvenioAppInstance, InvenioConfig} from './types'
+import invenioConfig, {InvenioAppConfig} from '../config'
+import {createHttpClient} from '../shared/services/http'
+import {InvenioRoutesGenerator} from "~/core";
 
 const InvenioCore = {
     installStoreModule(app: App): void {
-        let store = null
-        if (!app.config.globalProperties.$store) {
+        let store = app.config.globalProperties.$store
+        if (!store) {
             store = createStore({
                 modules: {
                     ...extractVuexModule(CoreStore)
                 }
             })
+            app.use(store)
         } else {
-            store = app.config.globalProperties.$store
             store.registerModule('core', {...extractVuexModule(CoreStore)})
         }
 
-        app.config.globalProperties.$invenio = {
-            // TODO: check if not already installed
+        const invenioProxy = app.config.globalProperties.$invenio.store
+        app.config.globalProperties.$invenio.store = {
+            ...invenioProxy,
             core: createProxy(store, CoreStore),
             // @ts-ignore
         } as StoreProxy<CoreStore>
     },
 
-    configure(app: App, invenioConfigOverrides: InvenioConfig): void {
+    configureInvenioApp(app: App, invenioConfigOverrides: InvenioConfig): void {
         invenioConfig.merge(invenioConfigOverrides)
-        app.config.globalProperties.$invenioConfig = invenioConfig
+        app.config.globalProperties.$invenio.config = invenioConfig as InvenioAppConfig
+    },
+
+    installRoutes(app: App): void {
+        app.config.globalProperties.$invenio.routes = new InvenioRoutesGenerator(app)
+    },
+
+    installAxiosServices(app: App): void {
+        app.config.globalProperties.$http = createHttpClient(app)
     },
 
     install(app: App, invenioConfigOverrides: InvenioConfig): void {
+        app.config.globalProperties.$invenio = {} as InvenioAppInstance
+
+        this.configureInvenioApp(app, invenioConfigOverrides)
+        this.installRoutes(app)
         this.installStoreModule(app)
-        this.configure(app, invenioConfigOverrides)
+        this.installAxiosServices(app)
     }
 }
 
