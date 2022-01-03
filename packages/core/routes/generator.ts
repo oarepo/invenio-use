@@ -17,15 +17,6 @@ import {CollectionConfig} from "~/core/config/types";
  * Class for generating common routes of an Invenio app.
  */
 export class InvenioRoutesGenerator {
-    public readonly HOME = HOME
-    public readonly USER_PROFILE = USER_PROFILE
-    public readonly AUTH_LOGIN = AUTH_LOGIN
-    public readonly AUTH_LOGOUT = AUTH_LOGOUT
-    public readonly ERROR = ERROR
-    public readonly RECORD_DETAIL_VIEW = RECORD_DETAIL_VIEW
-    public readonly RECORD_DETAIL_EDIT = RECORD_DETAIL_EDIT
-    public readonly RECORD_SEARCH = RECORD_SEARCH
-    public readonly RECORD_CREATE = RECORD_CREATE
     private readonly routeBase: string
 
     // private app: App
@@ -65,7 +56,7 @@ export class InvenioRoutesGenerator {
     home(): _RouteRecordBase {
         return {
             path: this.routeBase,
-            name: this.HOME
+            name: HOME
         }
     }
 
@@ -75,7 +66,7 @@ export class InvenioRoutesGenerator {
     userProfile(): _RouteRecordBase {
         return {
             path: `${this.routeBase}profile`,
-            name: this.USER_PROFILE
+            name: USER_PROFILE
         }
     }
 
@@ -85,7 +76,7 @@ export class InvenioRoutesGenerator {
     login(): _RouteRecordBase {
         return {
             path: `${this.routeBase}login`,
-            name: this.AUTH_LOGIN
+            name: AUTH_LOGIN
         }
     }
 
@@ -95,7 +86,7 @@ export class InvenioRoutesGenerator {
     logout(): _RouteRecordBase {
         return {
             path: `${this.routeBase}logout`,
-            name: this.AUTH_LOGOUT
+            name: AUTH_LOGOUT
         }
     }
 
@@ -105,7 +96,7 @@ export class InvenioRoutesGenerator {
     errorPage(): _RouteRecordBase {
         return {
             path: `${this.routeBase}error/:errorCode/:errorId`,
-            name: this.ERROR,
+            name: ERROR,
         }
     }
 
@@ -135,12 +126,12 @@ export class InvenioRoutesGenerator {
             path: recordDetailBase,
             children: [{
                 path: '',
-                name: this.RECORD_DETAIL_VIEW,
+                name: RECORD_DETAIL_VIEW,
                 // loadingComponent: () => import(/* webpackChunkName: 'record-detail' */ ),
                 // component: () => import(/* webpackChunkName: 'record-detail' */)
             }, {
                 path: 'edit',
-                name: this.RECORD_DETAIL_EDIT
+                name: RECORD_DETAIL_EDIT
                 // loadingComponent: () => import(/* webpackChunkName: 'record-detail' */ ),
                 // component: () => import(/* webpackChunkName: 'record-detail' */)
             }] as RouteRecordRaw[]
@@ -155,7 +146,7 @@ export class InvenioRoutesGenerator {
     recordSearch(searchPath?: string): _RouteRecordBase {
         return {
             path: searchPath ? `${this.routeBase}${searchPath}` : '',
-            name: this.RECORD_SEARCH
+            name: RECORD_SEARCH
             // loadingComponent: () => import(/* webpackChunkName: 'record-detail' */ ),
             // component: () => import(/* webpackChunkName: 'record-detail' */)
         }
@@ -169,7 +160,7 @@ export class InvenioRoutesGenerator {
     recordCreate(createPath?: string): _RouteRecordBase {
         return {
             path: createPath ? `${this.routeBase}${createPath}` : 'create',
-            name: this.RECORD_CREATE,
+            name: RECORD_CREATE,
             // loadingComponent: () => import(/* webpackChunkName: 'record-detail' */ ),
             // component: () => import(/* webpackChunkName: 'record-detail' */)
         }

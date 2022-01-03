@@ -1,4 +1,4 @@
-import _merge from 'lodash-es/merge'
+import {merge} from 'lodash-es'
 import {APP_CONFIG, RECORDS_CONFIG} from './default'
 import {AppConfig, IAppConfig, RecordsSearchConfig, RecordsSearchResultConfig} from './types'
 
@@ -17,7 +17,7 @@ export class InvenioAppConfig implements IAppConfig {
     }
 
     merge = (newConfig: any): void => {
-        Object.assign(this, _merge(this, newConfig));
+        Object.assign(this, merge(this, newConfig));
         Object.freeze(this);
     }
 }
@@ -47,7 +47,7 @@ export const getSearchConfig = (modelName: string, extraOptions: RecordsSearchRe
         DEFAULT_SIZE: config.defaultSize,
         DEFAULT_LAYOUT: config.defaultLayout,
     }
-    return _merge(result, extraOptions)
+    return merge(result, extraOptions)
 }
 //
 // const findBySortTypeOrReturnFirst = (searchConfig: RecordsSearchResultConfig, sortType: string) => {

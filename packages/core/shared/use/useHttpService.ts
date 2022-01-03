@@ -1,12 +1,11 @@
-import {AxiosErrorResponse} from '../services/types'
+import {AxiosErrorResponse} from '../types'
 import {RouteParams, RouteQueryAndHash, Router, useRouter} from 'vue-router'
 
-// const HTTP_STATUS_CODES_WITH_ERROR_PAGE = [404, 429, 500];
 export const URLS_NOT_TO_REDIRECT_IF_UNAUTHORIZED: string[] = ['login'];
 // CSRF possible errors
-// const CSRF_ERROR_REASON_NO_COOKIE = 'CSRF cookie';
-// const CSRF_ERROR_REASON_BAD_TOKEN = 'CSRF token';
-// const CSRF_ERROR_REASON_BAD_SIGNATURE = 'CSRF error';
+export const CSRF_ERROR_REASON_NO_COOKIE = 'CSRF cookie';
+export const CSRF_ERROR_REASON_BAD_TOKEN = 'CSRF token';
+export const CSRF_ERROR_REASON_BAD_SIGNATURE = 'CSRF error';
 
 
 /**
@@ -33,11 +32,21 @@ export function useHttpService() {
     /**
      * Navigates to route given by its name and params
      *
-     * @param name route name
+     * @param name target route name
      * @param args additional route arguments
      */
     const goTo = (name: string, args: RouteQueryAndHash | RouteParams): void => {
         router.push({name: name, ...args})
+    }
+
+    /**
+     * Replaces current route with another one
+     *
+     * @param name target route name
+     * @param args additional target route arguments
+     */
+    const replaceTo = (name: string, args: RouteQueryAndHash | RouteParams): void => {
+        router.replace({name: name, ...args})
     }
 
     /**
@@ -52,49 +61,31 @@ export function useHttpService() {
 
         router.push({name: 'error', params: {...state}})
     }
-    //
-    // const isCSRFError = (errorStatus, errorResponse) => {
-    //     const isBadRequest = errorStatus === 400;
-    //     const errorMessage = errorResponse.data && errorResponse.data.message;
-    //     if (isBadRequest && errorMessage) {
-    //         const isCSRFError =
-    //             errorMessage.includes(CSRF_ERROR_REASON_NO_COOKIE) ||
-    //             errorMessage.includes(CSRF_ERROR_REASON_BAD_TOKEN) ||
-    //             errorMessage.includes(CSRF_ERROR_REASON_BAD_SIGNATURE);
-    //         return isCSRFError;
-    //     }
-    //     return false;
-    // };
-    //
-    // const responseRejectInterceptor = (error) => {
-    //     const errorResponse = error.response;
-    //     if (errorResponse) {
-    //         const errorStatus = errorResponse.status;
-    //         const isUnauthorized = errorStatus === 401;
-    //         const originalRequest = error.config;
-    //         const requestURL = originalRequest.url;
-    //
-    //         if (isUnauthorized && urlShouldRedirect(requestURL)) {
-    //             goTo(`${AuthenticationRoutes.login}?sessionExpired`);
-    //         } else {
-    //             const alreadyRetried = originalRequest._retry;
-    //             if (isCSRFError(errorStatus, errorResponse) && !alreadyRetried) {
-    //                 originalRequest._retry = true;
-    //                 return http.request(originalRequest);
-    //             }
-    //
-    //             const hasDedicatedPage =
-    //                 HTTP_STATUS_CODES_WITH_ERROR_PAGE.includes(errorStatus);
-    //             if (hasDedicatedPage) {
-    //                 goToErrorPage(errorResponse);
-    //             }
-    //         }
-    //     }
-    //
-    //     return Promise.reject(error);
-    // }
 
-    return {urlShouldRedirect, goTo, goToErrorPage}
+    /**
+     * Determines if the error is a CSRF error
+     *
+     * @param errorResponse
+     */
+    const isCSRFError = (errorResponse: AxiosErrorResponse) => {
+        const isBadRequest = errorResponse.status === 400;
+        const errorMessage = errorResponse.data && errorResponse.data.message;
+        if (isBadRequest && errorMessage) {
+            return errorMessage.includes(CSRF_ERROR_REASON_NO_COOKIE) ||
+                errorMessage.includes(CSRF_ERROR_REASON_BAD_TOKEN) ||
+                errorMessage.includes(CSRF_ERROR_REASON_BAD_SIGNATURE)
+        }
+        return false
+    }
+
+    /**
+     * Navigate back in router history
+     */
+    const goBack = () => {
+        router.back()
+    }
+
+    return {urlShouldRedirect, goTo, replaceTo, goBack, goToErrorPage, isCSRFError}
 }
 
 export default useHttpService
